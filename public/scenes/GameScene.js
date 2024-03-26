@@ -21,7 +21,7 @@ export default class GameScene extends Phaser.Scene {
         this.add.text(100, window.innerHeight/2, "Игровая сцена", {font: "25px Arial", fill: "yellow"});
         // this.pet = new Pet(this, 100, 730);
         // this.pet.walk();
-        this.panda = new Panda(this, 100, 770);
+        this.panda = new Panda(this, 100, 570);
         this.panda.walk();
         // this.apple = new Apple(this, 100,800);
         // this.apple.walk();
