@@ -6,6 +6,7 @@ export class Creature extends Phaser.GameObjects.Sprite {
         this.moveSpeed = 1; 
         this.moveDirection = Math.random() > 0.5 ? 1 : -1; 
         this.isMoving = false;
+        this.initialY = y;
     }
 
     initAnimations(animationKey, framesConfig) {
@@ -29,6 +30,12 @@ export class Creature extends Phaser.GameObjects.Sprite {
         this.anims.stop();
     }
     update() {
+        if (this.y>this.initialY) {
+            this.y=this.initialY;
+        }
+        if (this.y<this.initialY) {
+            this.y+=1;
+        }
         if (!this.isAlive){
             this.stop();
         }

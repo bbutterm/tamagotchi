@@ -10,6 +10,16 @@ class Bird1 extends Creature {
             zeroPad: 1
         });
         this.anims.create({
+            key: 'feed',
+            frames: this.anims.generateFrameNames('bird1', {
+                start:3, end: 3,
+                prefix: 'move', suffix: '.png',
+                zeroPad: 1
+            })
+            
+        });
+        
+        this.anims.create({
             key: 'die',
             frames: this.anims.generateFrameNames('bird1', {
                 prefix: 'death',
