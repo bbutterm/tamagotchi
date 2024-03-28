@@ -22,33 +22,34 @@ export class Creature extends Phaser.GameObjects.Sprite {
     }
 
     walk() {
+        if (!this.isAlive) return;
+        if (this.isAlive) {
         this.isMoving = true;
         this.play(`${this.texture.key}_walk`, true);
+        }
     }
     stop() {
         this.isMoving = false;
         this.anims.stop();
     }
-    update() {
-        if (this.y>this.initialY) {
-            this.y=this.initialY;
-        }
-        if (this.y<this.initialY) {
-            this.y+=1;
-        }
-        if (!this.isAlive){
-            this.stop();
-        }
-        if (this.isMoving) {
-            this.x += this.moveSpeed * this.moveDirection;
-            if (Math.random() < 0.01) {
-                this.moveDirection *= -1;
-                this.flipX = this.moveDirection < 0;
-            }
-            if (this.x < 0 || this.x > this.scene.sys.game.config.width) {
-                this.moveDirection *= -1;
-                this.flipX = this.moveDirection < 0;
-            }
-        }
-    }
+    // update() {
+    //     if (this.isAlive && this.y>this.initialY ) {
+    //         this.y=this.initialY;
+    //     }
+    //     if (this.isAlive && this.y<this.initialY) {
+    //         this.y+=1;
+    //     }
+        
+    //     if (this.isMoving) {
+    //         this.x += this.moveSpeed * this.moveDirection;
+    //         if (Math.random() < 0.01) {
+    //             this.moveDirection *= -1;
+    //             this.flipX = this.moveDirection < 0;
+    //         }
+    //         if (this.x < 0 || this.x > this.scene.sys.game.config.width) {
+    //             this.moveDirection *= -1;
+    //             this.flipX = this.moveDirection < 0;
+    //         }
+    //     }
+    // }
 }

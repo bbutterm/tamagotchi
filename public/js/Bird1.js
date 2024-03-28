@@ -34,20 +34,42 @@ class Bird1 extends Creature {
     }
     die() {
         if (this.isAlive){
-            
+            this.initialY +=100;
             this.play('die');
-            this.isMoving=false;
+            console.log("pet_die")
+            
             this.on('animationcomplete', () => {
 
             this.anims.stop();
             let lastFrame = this.anims.currentAnim.frames[this.anims.currentAnim.frames.length - 1];
             this.setTexture(lastFrame.textureKey, lastFrame.textureFrame);
     
-            this.y += 60;
+            this.initialY += 60;
             this.isAlive=false
+            this.isMoving=false;
         }, this);
     }
 
+    }
+    update() {
+        if (this.isAlive && this.y>this.initialY ) {
+            this.y=this.initialY;
+        }
+        if (this.isAlive && this.y<this.initialY) {
+            this.y+=1;
+        }
+        
+        if (this.isMoving) {
+            this.x += this.moveSpeed * this.moveDirection;
+            if (Math.random() < 0.01) {
+                this.moveDirection *= -1;
+                this.flipX = this.moveDirection < 0;
+            }
+            if (this.x < 0 || this.x > this.scene.sys.game.config.width) {
+                this.moveDirection *= -1;
+                this.flipX = this.moveDirection < 0;
+            }
+        }
     }
 }
 
