@@ -1,6 +1,7 @@
 export class Creature extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, texture, frame) {
         super(scene, x, y, texture, frame);
+        this.isAlive=true;
         this.scene.add.existing(this);
         this.moveSpeed = 1; // Стандартная скорость движения
         this.moveDirection = Math.random() > 0.5 ? 1 : -1; // Направление движения
@@ -34,15 +35,18 @@ export class Creature extends Phaser.GameObjects.Sprite {
 
     // Обновление состояния
     update() {
+        if (!this.isAlive){
+            this.stop();
+        }
         if (this.isMoving) {
             this.x += this.moveSpeed * this.moveDirection;
             if (Math.random() < 0.01) {
                 this.moveDirection *= -1;
-                this.flipX = this.moveDirection > 0;
+                this.flipX = this.moveDirection < 0;
             }
             if (this.x < 0 || this.x > this.scene.sys.game.config.width) {
                 this.moveDirection *= -1;
-                this.flipX = this.moveDirection > 0;
+                this.flipX = this.moveDirection < 0;
             }
         }
     }
