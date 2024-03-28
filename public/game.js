@@ -1,14 +1,13 @@
-import GameScene from './scenes/GameScene.js'; // Убедитесь, что путь корректен
+import GameScene from './scenes/GameScene.js';
 
 const config = {
     type: Phaser.AUTO,
     width: window.innerWidth,
     height: window.innerHeight,
     parent: 'game-container',
-    scene: [GameScene], // Теперь GameScene является первой и единственной сценой в массиве
+    scene: [GameScene],
     scale: {
         mode: Phaser.Scale.RESIZE,
-        //autoCenter: Phaser.Scale.CENTER_BOTH,
         width: window.innerWidth,
         height: window.innerHeight,
     }

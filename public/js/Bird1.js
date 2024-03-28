@@ -1,9 +1,9 @@
-import { Creature } from "./Creature.js"; // Импорт базового класса
+import { Creature } from "./Creature.js"; 
 
 class Bird1 extends Creature {
     constructor(scene, x, y) {
         super(scene, x, y, 'bird1', 'bird1.png');
-        this.setScale(1.3);
+        this.setScale(3);
         this.initAnimations('bird1', {
             start: 1, end: 4,
             prefix: 'move', suffix: '.png',
@@ -23,22 +23,22 @@ class Bird1 extends Creature {
         });
     }
     die() {
-        // Запуск анимации смерти
-        this.play('die');
-        this.isMoving=false;
-        // Подписка на событие завершения анимации
-        this.on('animationcomplete', () => {
-            // После завершения анимации, оставляем питомца на последнем кадре
+        if (this.isAlive){
+            
+            this.play('die');
+            this.isMoving=false;
+            this.on('animationcomplete', () => {
+
             this.anims.stop();
             let lastFrame = this.anims.currentAnim.frames[this.anims.currentAnim.frames.length - 1];
             this.setTexture(lastFrame.textureKey, lastFrame.textureFrame);
     
-            // Опускаем питомца на 40 пикселей вниз
-            this.y += 40;
-        }, this); // Обратите внимание на передачу контекста this для корректной работы внутри обработчика
+            this.y += 60;
+            this.isAlive=false
+        }, this);
     }
 
-    // Метод `update` наследуется от Creature, но его можно переопределить для добавления специфичной логики
+    }
 }
 
 export { Bird1 };

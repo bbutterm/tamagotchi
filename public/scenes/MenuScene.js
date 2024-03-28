@@ -4,15 +4,14 @@ export default class MenuScene extends Phaser.Scene {
     }
 
     create() {
-        // Создаем прямоугольник, который будет служить фоном для кнопки
         const button = this.add.rectangle(this.cameras.main.centerX, 200, 150, 50, 0x00ff00)
-            .setInteractive() // Сделать кнопку интерактивной
-            .on('pointerover', () => this.onButtonHover(button)) // Событие при наведении мыши
-            .on('pointerout', () => this.onButtonRest(button)) // Событие когда мышь уходит с кнопки
-            .on('pointerdown', () => this.onButtonDown(button)) // Событие при нажатии
+            .setInteractive() 
+            .on('pointerover', () => this.onButtonHover(button)) 
+            .on('pointerout', () => this.onButtonRest(button)) 
+            .on('pointerdown', () => this.onButtonDown(button)) 
             .on('pointerup', () => {
                 this.onButtonUp(button);
-                this.scene.start('GameScene'); // Переключение на сцену создания питомца
+                this.scene.start('GameScene'); 
             });
 
         // Добавляем текст на кнопку
@@ -20,23 +19,23 @@ export default class MenuScene extends Phaser.Scene {
             font: '18px Arial',
             fill: '#ffffff'
         })
-        .setOrigin(0.5); // Центрируем текст относительно прямоугольника
+        .setOrigin(0.5); 
     }
 
     // Методы для анимации кнопок
     onButtonHover(button) {
-        button.setFillStyle(0x00ff00, 0.8); // Изменить прозрачность
+        button.setFillStyle(0x00ff00, 0.8); 
     }
 
     onButtonRest(button) {
-        button.setFillStyle(0x00ff00, 1); // Вернуть к исходной прозрачности
+        button.setFillStyle(0x00ff00, 1); 
     }
 
     onButtonDown(button) {
-        button.setScale(0.9); // Уменьшить при нажатии
+        button.setScale(0.9);
     }
 
     onButtonUp(button) {
-        button.setScale(1); // Вернуть к исходному размеру
+        button.setScale(1);
     }
 }

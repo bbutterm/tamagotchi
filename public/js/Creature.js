@@ -3,12 +3,11 @@ export class Creature extends Phaser.GameObjects.Sprite {
         super(scene, x, y, texture, frame);
         this.isAlive=true;
         this.scene.add.existing(this);
-        this.moveSpeed = 1; // Стандартная скорость движения
-        this.moveDirection = Math.random() > 0.5 ? 1 : -1; // Направление движения
-        this.isMoving = false; // Статус движения
+        this.moveSpeed = 1; 
+        this.moveDirection = Math.random() > 0.5 ? 1 : -1; 
+        this.isMoving = false;
     }
 
-    // Инициализация анимаций
     initAnimations(animationKey, framesConfig) {
         const animsKey = `${animationKey}_walk`;
         if (this.scene.anims.get(animsKey) === undefined) {
@@ -21,19 +20,14 @@ export class Creature extends Phaser.GameObjects.Sprite {
         }
     }
 
-    // Начало движения
     walk() {
         this.isMoving = true;
         this.play(`${this.texture.key}_walk`, true);
     }
-
-    // Остановка движения
     stop() {
         this.isMoving = false;
         this.anims.stop();
     }
-
-    // Обновление состояния
     update() {
         if (!this.isAlive){
             this.stop();

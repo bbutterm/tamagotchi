@@ -1,8 +1,8 @@
-import { Creature } from "./Creature.js"; // Импорт базового класса
+import { Creature } from "./Creature.js"; 
 
 class Pet extends Creature {
     constructor(scene, x, y) {
-        super(scene, x, y, 'lunatic', 'Lunatic-2.png'); // Вызов конструктора базового класса
+        super(scene, x, y, 'lunatic', 'Lunatic-2.png'); 
         this.initAnimations('lunatic', {
             start: 0, end: 3,
             prefix: 'Lunatic-', suffix: '.png',
@@ -10,7 +10,6 @@ class Pet extends Creature {
         });
     }
 
-    // Метод `update` можно переопределить, если нужна уникальная логика обновления для Pet
 }
 
 export { Pet };
